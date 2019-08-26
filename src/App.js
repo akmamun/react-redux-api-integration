@@ -1,27 +1,24 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
-import { loadTodos } from './actions/loadTodos';
+import { todoList } from './actions';
 import './App.css'; 
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
+ state = {
       todos: []
     }
-  }
+  
 
   componentDidMount() {
-        this.props.dispatch(loadTodos()); 
+        this.props.dispatch(todoList()); 
   }
   render() {
-    const data = this.props.todos;
+    const {todos} = this.props;
     return (
       <div>
         
-        {data.map((d,i)=>(
+        {todos.map((d,i)=>(
           <Fragment key={i}>
           <h1 >{d.title}</h1>
           <h2 >{d.body}</h2>

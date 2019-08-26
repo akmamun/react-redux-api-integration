@@ -1,5 +1,5 @@
 
-const TodoDetails = (state, action)=> ({
+const TodoList = (state, action)=> ({
         ...state,
         todos: action.data.map(data => ({
             title:data.title,
@@ -9,7 +9,7 @@ const TodoDetails = (state, action)=> ({
 
 export default function reducer(state = {}, action) {
 const reducers = {
-    'TODOS_LOAD': TodoDetails
+    'TODO_LIST': TodoList
 }
 if (action.type in reducers) {
     return (reducers[action.type](state, action));
