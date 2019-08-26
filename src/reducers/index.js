@@ -7,9 +7,20 @@ const TodoList = (state, action)=> ({
         }))
 }); 
 
+
+const TodoAdd = (state, action)=> ([
+    ...state,
+    {
+        title:action.title,
+        body:action.body
+    }
+]);
+
+
 export default function reducer(state = {}, action) {
 const reducers = {
-    'TODO_LIST': TodoList
+    'TODO_LIST': TodoList,
+    TODO_ADD :TodoAdd
 }
 if (action.type in reducers) {
     return (reducers[action.type](state, action));
