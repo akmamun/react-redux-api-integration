@@ -1,13 +1,20 @@
 
-function AddTodos(state, action) {
-return {
-    ...state,
-
-    }
-}  
+const TodoDetails = (state, action)=> ({
+        ...state,
+        todos: action.data.map(data => ({
+            title:data.title,
+            body:data.body
+        }))
+}); 
 
 export default function reducer(state = {}, action) {
 const reducers = {
-    'ADD_TODO': AddTodos
+    'TODOS_LOAD': TodoDetails
+}
+if (action.type in reducers) {
+    return (reducers[action.type](state, action));
+} else {
+    console.warn(`No reducer for action type "${action.type}"`);
+    return state;
 }};
     

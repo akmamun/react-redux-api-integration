@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from 'react';
+import {connect} from 'react-redux';
+import { loadTodos } from './actions/loadTodos';
+import './App.css'; 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      todos: []
+    }
+  }
+
+  componentDidMount() {
+        this.props.dispatch(loadTodos()); 
+  }
+  render() {
+    const data = this.props.todos;
+    return (
+      <div>
+        
+        {data.map((d,i)=>(
+          <Fragment key={i}>
+          <h1 >{d.title}</h1>
+          <h2 >{d.body}</h2>
+          </Fragment>
+          )
+        )} 
+      </div>
+    );
+  }
 }
 
-export default App;
+export default connect(
+  (state) => {
+      return {
+          todos: state.todos || []
+      }
+  },
+  null
+)(App);
