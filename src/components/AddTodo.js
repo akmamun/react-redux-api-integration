@@ -73,5 +73,5 @@ export default connect(
             todos: state.todos || []
         }
     },
-    null
+    // null
 )(AddTodo);

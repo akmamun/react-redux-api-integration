@@ -3,7 +3,11 @@ import { ADD_TODO, TODO_LIST } from "../constants/ActionTypes";
 export default function todos(state = [], action) {
     switch (action.type) {
         case ADD_TODO:
-            return {...state};
+            return {
+                ...state,
+                title: action.title,
+                body: action.body
+            };
 
         case TODO_LIST:
             return {

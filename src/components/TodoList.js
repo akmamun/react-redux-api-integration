@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {todoList} from '../actions';
 import {Link} from "react-router-dom";
 import {DELETE_TODO, EDIT_TODO} from "../constants/ActionTypes";
-import Overlay from "./modal/Modal";
+ 
 
 class TodoList extends Component {
     state = {
@@ -36,10 +36,6 @@ class TodoList extends Component {
                             <h1>{d.title} <Link to={`todo/${d._id}`} onClick={this.onChange}>Edit </Link></h1>
                             <h2>{d.body}</h2>
                             <button onClick={this.showOverlay}>Edit </button>
-                            <Overlay show={this.state.show} close={this.hideOverlay}>
-                                ts
-                            </Overlay>
-
                         </div>
                     )
                 )}
