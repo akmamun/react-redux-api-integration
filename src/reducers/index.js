@@ -1,6 +1,15 @@
-import { ADD_TODO, TODO_LIST } from "../constants/ActionTypes";
+import {
+    ADD_TODO,
+    TODO_LIST,
+    TODO
+} from "../constants/ActionTypes";
 
-export default function todos(state = [], action) {
+const initialState = {
+    title: "",
+    body: ""
+  };
+  
+export default function todos(state = initialState, action) {
     switch (action.type) {
         case ADD_TODO:
             return {
@@ -16,6 +25,12 @@ export default function todos(state = [], action) {
                     ...data
                 }))
             };
+        case TODO:
+            return {
+                // ...state,
+                title: action.title,
+                body: action.body
+            };    
         default:
             return state
     }
@@ -50,4 +65,3 @@ export default function todos(state = [], action) {
 //     console.warn(`No reducer for action type "${action.type}"`);
 //     return state;
 // }};
-    
